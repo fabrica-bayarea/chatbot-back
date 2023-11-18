@@ -16,10 +16,7 @@ export class UsuarioDto {
   @IsString()
   senha: string;
 
-  @IsDate()
-  data_criacao: Date;
-  
-  constructor(init:Partial<UsuarioDto> = null){
+  constructor(init: Partial<UsuarioDto> = null) {
     Object.assign(this, init);
   }
 }

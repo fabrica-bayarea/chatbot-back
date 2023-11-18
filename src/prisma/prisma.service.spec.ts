@@ -15,4 +15,13 @@ describe('PrismaService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+ 
+  it('should find a record by ID', async () => {
+    const id = 1;
+    const record = await service.findById(id);
+    expect(record).toBeDefined();
+    expect(record.id).toEqual(id);
+   
+  });
 });

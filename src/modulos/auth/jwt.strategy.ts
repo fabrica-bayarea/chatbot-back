@@ -7,12 +7,14 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor() {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      ignoreExpiration: false,
-      secretOrKey: process.env.JWT_SECRET_KEY,
+      ignoreExpiration: false, 
+      secretOrKey: process.env.JWT_SECRET_KEY, 
     });
   }
 
   async validate(payload: any) {
-    return {id:payload.id, nome: payload.nome, email: payload.email};
+    // Certifique-se de que os campos do payload existem
+    const { id, nome, email } = payload;
+    return { id, nome, email };
   }
 }

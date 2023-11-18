@@ -5,10 +5,14 @@ import { PrismaClient } from '@prisma/client';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  // Habilita a validação globalmente
   app.useGlobalPipes(new ValidationPipe());
-  if(process.env.NODE_ENV === 'development'){
+
+  // Popula o banco de dados no ambiente de desenvolvimento
+  if (process.env.NODE_ENV === 'development') {
     const prisma = new PrismaClient();
-    try{
+    try {
       await prisma.usuario.create({
         data: {
           nome: process.env.NOME_USUARIO,
@@ -16,16 +20,22 @@ async function bootstrap() {
           senha: process.env.SENHA_USUARIO,
         },
       });
-    }catch(err){
+    } catch (err) {
       console.log('Base de dados já está populada');
-    }finally {
+    } finally {
       await prisma.$disconnect();
     }
   }
+
+  // Configuração do CORS
   app.enableCors({
     origin: '*',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',  
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   });
-  await app.listen(3000);
+
+  // Escuta na porta 4000
+  await app.listen(4000);
+
 }
+
 bootstrap();
