@@ -34,6 +34,6 @@ lerna-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 
-/.env
+.env
 /src/modulos/auth/generate-jwt-secret.js
-
+/postgres-data/
