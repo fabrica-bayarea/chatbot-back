@@ -2,6 +2,13 @@
 /dist
 /node_modules
 
+
+# Sensitive data
+.env
+prisma/migrations/**/
+prisma/migrations/migration_lock.toml
+
+
 # Logs
 logs
 *.log
@@ -33,7 +40,4 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-
-/.env
-/src/modulos/auth/generate-jwt-secret.js
 
